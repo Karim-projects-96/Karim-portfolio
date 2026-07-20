@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificates | Portfolio</title>
+    
+    <!-- Meta SEO -->
+    <meta name="description" content="View my dynamic certificates, verified qualifications, and academic achievements.">
+    <meta name="author" content="Portfolio User">
+    
+    <!-- CSS Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                    <polyline points="2 17 12 22 22 17"></polyline>
+                    <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+                <span>Portfolio</span>
+            </a>
+            
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="resume.html">Resume</a></li>
+                    <li><a href="certificates.html">Certificates</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <button class="nav-toggle" aria-label="Toggle navigation Menu">
+                &#9776;
+            </button>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="section-header">
+            <h1 class="section-title">My <span>Certificates</span></h1>
+            <p class="section-subtitle">Official certifications, diplomas, and accomplishments displayed directly.</p>
+        </div>
+
+        <div class="grid-3" id="certificates-grid-container">
+            <!-- Loaded dynamically -->
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2026. All rights reserved.</p>
+            <p>Powered by HTML & JSON API</p>
+        </div>
+    </footer>
+
+    <!-- Client Script -->
+    <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('profileLoaded', (e) => {
+            const data = e.detail;
+            document.title = `Certificates | ${data.profile.full_name}`;
+        });
+
+        // Load certificates
+        fetch('api.php?get=documents')
+            .then(res => res.json())
+            .then(data => {
+                const grid = document.getElementById('certificates-grid-container');
+                if (data.success && data.documents.length > 0) {
+                    grid.innerHTML = '';
+                    data.documents.forEach(doc => {
+                        const fileExt = doc.file_path.split('.').pop().toLowerCase();
+                        const isImage = ['jpg', 'jpeg', 'png', 'webp', 'gif'].includes(fileExt);
+                        
+                        let visualHtml = '';
+                        if (isImage) {
+                            visualHtml = `
+                                <div style="height: 200px; overflow: hidden; border-bottom: 1px solid var(--border-color); position: relative;">
+                                    <img src="${doc.file_path}" alt="${doc.title}" style="width: 100%; height: 100%; object-fit: cover;" class="project-img">
+                                </div>
+                            `;
+                        } else {
+                            visualHtml = `
+                                <div style="height: 200px; background: linear-gradient(135deg, #161a2c 0%, #0d0f17 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; border-bottom: 1px solid var(--border-color); color: var(--text-muted);">
+                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" style="color: var(--primary);">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                        <polyline points="14 2 14 8 20 8"></polyline>
+                                    </svg>
+                                    <span style="font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted);">
+                                        ${fileExt.toUpperCase()} DOCUMENT
+                                    </span>
+                                </div>
+                            `;
+                        }
+
+                        let actionHtml = '';
+                        if (!isImage) {
+                            actionHtml = `
+                                <a href="${doc.file_path}" target="_blank" class="btn btn-secondary btn-sm" style="width: 100%; border-radius: 6px; justify-content: center; gap: 8px; background: rgba(0, 229, 255, 0.08); border-color: rgba(0, 229, 255, 0.2); color: var(--accent);">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                    View Document
+                                </a>
+                            `;
+                        }
+
+                        // Format Date
+                        const dateObj = new Date(doc.uploaded_at);
+                        const formattedDate = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+                        grid.innerHTML += `
+                            <div class="project-card glass-panel" style="overflow: hidden; display: flex; flex-direction: column; height: 100%;">
+                                ${visualHtml}
+                                <div style="padding: 20px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between;">
+                                    <div style="margin-bottom: 20px;">
+                                        <h3 style="font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 6px;">${doc.title}</h3>
+                                        <p style="color: var(--text-muted); font-size: 0.8rem;">${doc.file_type} &bull; Uploaded: ${formattedDate}</p>
+                                    </div>
+                                    ${actionHtml}
+                                </div>
+                            </div>
+                        `;
+                    });
+                } else {
+                    grid.innerHTML = `
+                        <div class="glass-panel" style="padding: 60px; text-align: center; color: var(--text-muted); width: 100%; grid-column: 1 / -1;">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" style="margin-bottom: 20px; color: var(--primary);">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                            </svg>
+                            <h3 style="font-family: var(--font-heading); margin-bottom: 10px;">No Certificates Uploaded</h3>
+                            <p>I am currently organizing my certification documents. Please visit again later.</p>
+                        </div>
+                    `;
+                }
+            })
+            .catch(err => console.error("Error loading certificates:", err));
+    </script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+/* css/responsive.css - Responsive Media Queries */
+
+@media screen and (max-width: 992px) {
+    /* Hero section adjust */
+    .hero-section {
+        flex-direction: column-reverse;
+        gap: 40px;
+        text-align: center;
+        padding-top: 40px;
+        min-height: auto;
+    }
+
+    .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-actions {
+        justify-content: center;
+    }
+
+    .hero-visual {
+        flex: 0 0 auto;
+    }
+
+    .profile-img-container {
+        width: 260px;
+        height: 260px;
+    }
+
+    /* About page layout */
+    .about-layout {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .about-sidebar {
+        width: 100%;
+        flex: auto;
+    }
+
+    /* Contact layout */
+    .contact-layout {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        padding-top: 100px;
+        padding-bottom: 40px;
+    }
+
+    /* Hero heading adjust */
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    /* Section headings adjust */
+    .section-title {
+        font-size: 2rem;
+    }
+
+    /* Navigation styling for mobile */
+    .nav-toggle {
+        display: block;
+        z-index: 1100;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: rgba(13, 15, 23, 0.98);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-left: 1px solid var(--border-color);
+        flex-direction: column;
+        padding: 100px 40px 40px 40px;
+        gap: 25px;
+        transition: var(--transition-smooth);
+        z-index: 1050;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    /* Grids scaling down */
+    .grid-3, .grid-2 {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+    }
+
+    .profile-img-container {
+        width: 220px;
+        height: 220px;
+    }
+}
