@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    if (!matched && (currentPath.endsWith('/') || currentPath.includes('index.html') || currentPath.includes('index.php'))) {
+    if (!matched && (currentPath.endsWith('/') || currentPath.includes('index.html'))) {
         const homeLink = document.querySelector('.nav-links a[href="index.html"]');
         if (homeLink) homeLink.classList.add('active');
     }
@@ -133,29 +133,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
-     // 6. Global Header & Footer Dynamic Profile Setup
-    fetch('api.php?get=profile')
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                const profile = data.profile;
-                
-                // Update Logo
-                const logoSpan = document.querySelector('.logo span');
-                if (logoSpan) {
-                    logoSpan.textContent = profile.full_name;
-                }
-                
-                // Update Footer Copyright
-                const footerText = document.querySelector('.footer p');
-                if (footerText) {
-                    footerText.innerHTML = `&copy; ${new Date().getFullYear()} ${profile.full_name}. All rights reserved.`;
-                }
-
-                // Dispatch event so other pages can bind their elements
-                document.dispatchEvent(new CustomEvent('profileLoaded', { detail: data }));
-            }
-        })
-        .catch(err => console.error("Error loading profile:", err));
 });

@@ -3,19 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects Catalog | Portfolio</title>
-    
-    <!-- Meta SEO -->
-    <meta name="description" content="Explore my dynamic project catalog containing custom full-stack web applications, tools, and software code layouts.">
-    <meta name="author" content="Portfolio User">
-    
-    <!-- CSS Styles -->
+    <title>Karim Hasen Pathan | Cyber Security and Ethical Hacker,Creative Full-Stack Developer</title>
+    <meta name="description" content="Portfolio of Karim Hasen Pathan - Cyber Security and Ethical Hacker,Creative Full-Stack Developer. Explore my projects, certificates, documents, and contact me.">
+    <meta name="author" content="Karim Hasen Pathan">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
-
-    <!-- Header Navigation -->
     <header class="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo">
@@ -24,7 +18,7 @@
                     <polyline points="2 17 12 22 22 17"></polyline>
                     <polyline points="2 12 12 17 22 12"></polyline>
                 </svg>
-                <span>Portfolio</span>
+                <span>Karim Hasen Pathan</span>
             </a>
             
             <nav>
@@ -45,109 +39,47 @@
         </div>
     </header>
 
-    <main class="container">
-        <div class="section-header">
-            <h1 class="section-title">My <span>Projects</span></h1>
-            <p class="section-subtitle">A collection of web applications, systems, and design concepts I have engineered.</p>
-        </div>
+<main class="container">
+    <div class="section-header">
+        <h1 class="section-title">My <span>Projects</span></h1>
+        <p class="section-subtitle">A collection of web applications, systems, and design concepts I have engineered.</p>
+    </div>
 
-        <div class="grid-3" id="projects-grid-container">
-            <!-- Loaded dynamically -->
+    <div class="grid-3">
+        <div class="project-card glass-panel">
+            <div class="project-img-wrapper">
+                <img src="images/project_1782997742_728.jpg" alt="Memorial Website" class="project-img">
+            </div>
+            
+            <div class="project-card-content">
+                <h3 class="project-title">Memorial Website</h3>
+                <p class="project-desc">We make a website for the student for its memory storage.</p>
+                
+                <div class="project-tags">
+                    <span class="project-tag">Php</span>
+                    <span class="project-tag">css</span>
+                    <span class="project-tag">sql</span>
+                </div>
+                
+                <a href="https://bcs-batch-2023-26.page.gd/" target="_blank" class="project-link">
+                    Launch Live Site
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                        <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                </a>
+            </div>
         </div>
-    </main>
+    </div>
+</main>
 
-    <!-- Footer Section -->
     <footer class="footer">
         <div class="footer-container">
-            <p>&copy; 2026. All rights reserved.</p>
-            <p>Powered by HTML & JSON API</p>
+            <p>&copy; 2026 Karim Hasen Pathan. All rights reserved.</p>
+            <p>Static Portfolio Version</p>
         </div>
     </footer>
 
-    <!-- Client Script -->
     <script src="js/script.js"></script>
-    <script>
-        document.addEventListener('profileLoaded', (e) => {
-            const data = e.detail;
-            document.title = `Projects | ${data.profile.full_name}`;
-        });
-
-        // Load projects catalog
-        fetch('api.php?get=projects')
-            .then(res => res.json())
-            .then(data => {
-                const grid = document.getElementById('projects-grid-container');
-                if (data.success && data.projects.length > 0) {
-                    grid.innerHTML = '';
-                    data.projects.forEach(project => {
-                        let imgHtml = '';
-                        if (project.image_path) {
-                            imgHtml = `<img src="${project.image_path}" alt="${project.title}" class="project-img">`;
-                        } else {
-                            imgHtml = `
-                                <div class="project-placeholder-visual" style="height: 100%; width: 100%; background: linear-gradient(135deg, #111827 0%, #1e1b4b 100%); display: flex; align-items: center; justify-content: center; color: var(--text-muted);">
-                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-                                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                                        <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                                        <polyline points="21 15 16 10 5 21"></polyline>
-                                    </svg>
-                                </div>
-                            `;
-                        }
-
-                        let tagsHtml = '';
-                        if (project.technologies) {
-                            tagsHtml = `<div class="project-tags">`;
-                            project.technologies.split(',').forEach(tag => {
-                                if (tag.trim()) {
-                                    tagsHtml += `<span class="project-tag">${tag.trim()}</span>`;
-                                }
-                            });
-                            tagsHtml += `</div>`;
-                        }
-
-                        let linkHtml = '';
-                        if (project.project_link) {
-                            linkHtml = `
-                                <a href="${project.project_link}" target="_blank" class="project-link">
-                                    Launch Live Site
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                                        <line x1="7" y1="17" x2="17" y2="7"></line>
-                                        <polyline points="7 7 17 7 17 17"></polyline>
-                                    </svg>
-                                </a>
-                            `;
-                        }
-
-                        grid.innerHTML += `
-                            <div class="project-card glass-panel">
-                                <div class="project-img-wrapper">
-                                    ${imgHtml}
-                                </div>
-                                <div class="project-card-content">
-                                    <h3 class="project-title">${project.title}</h3>
-                                    <p class="project-desc">${project.description || ''}</p>
-                                    ${tagsHtml}
-                                    ${linkHtml}
-                                </div>
-                            </div>
-                        `;
-                    });
-                } else {
-                    grid.innerHTML = `
-                        <div class="glass-panel" style="padding: 60px; text-align: center; color: var(--text-muted); width:100%; grid-column:1/-1;">
-                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" style="margin-bottom: 20px; color: var(--primary);">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                                <line x1="9" y1="9" x2="15" y2="15"></line>
-                                <line x1="15" y1="9" x2="9" y2="15"></line>
-                            </svg>
-                            <h3 style="font-family: var(--font-heading); margin-bottom: 10px;">No Projects Yet</h3>
-                            <p>I am currently setting up my project catalog. Please check back later or visit the admin panel to upload projects.</p>
-                        </div>
-                    `;
-                }
-            })
-            .catch(err => console.error("Error loading projects:", err));
-    </script>
 </body>
 </html>

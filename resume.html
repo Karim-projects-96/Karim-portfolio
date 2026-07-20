@@ -3,19 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume / Curriculum Vitae | Portfolio</title>
-    
-    <!-- Meta SEO -->
-    <meta name="description" content="View my curriculum vitae, professional history, education, and career experience online.">
-    <meta name="author" content="Portfolio User">
-    
-    <!-- CSS Styles -->
+    <title>Karim Hasen Pathan | Cyber Security and Ethical Hacker,Creative Full-Stack Developer</title>
+    <meta name="description" content="Portfolio of Karim Hasen Pathan - Cyber Security and Ethical Hacker,Creative Full-Stack Developer. Explore my projects, certificates, documents, and contact me.">
+    <meta name="author" content="Karim Hasen Pathan">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
-
-    <!-- Header Navigation -->
     <header class="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo">
@@ -24,7 +18,7 @@
                     <polyline points="2 17 12 22 22 17"></polyline>
                     <polyline points="2 12 12 17 22 12"></polyline>
                 </svg>
-                <span>Portfolio</span>
+                <span>Karim Hasen Pathan</span>
             </a>
             
             <nav>
@@ -45,96 +39,35 @@
         </div>
     </header>
 
-    <main class="container">
-        <div class="section-header">
-            <h1 class="section-title">My <span>Resume</span></h1>
-            <p class="section-subtitle">Read my professional experience, skills, and history.</p>
-        </div>
+<main class="container">
+    <div class="section-header">
+        <h1 class="section-title">My <span>Resume</span></h1>
+        <p class="section-subtitle">Read my professional experience, skills, and history.</p>
+    </div>
 
-        <div class="glass-panel" style="padding: 30px; margin-bottom: 40px; text-align: center;" id="resume-container">
-            <div style="padding: 40px; color: var(--text-muted);">
-                <p>Loading resume details...</p>
-            </div>
+    <div class="glass-panel" style="padding: 30px; margin-bottom: 40px; text-align: center;">
+        <!-- No CV Uploaded Placeholder -->
+        <div style="padding: 80px 20px; text-align: center; color: var(--text-muted);">
+            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" style="margin-bottom: 20px; color: var(--primary);">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <circle cx="12" cy="13" r="4"></circle>
+                <polyline points="14 2 14 8 20 8"></polyline>
+            </svg>
+            <h3 style="font-family: var(--font-heading); margin-bottom: 10px; color: var(--text-main);">No Resume Uploaded Yet</h3>
+            <p style="margin-bottom: 25px; max-width: 480px; margin-left: auto; margin-right: auto;">
+                A CV/Resume has not been uploaded yet. Please check back soon.
+            </p>
         </div>
-    </main>
+    </div>
+</main>
 
-    <!-- Footer Section -->
     <footer class="footer">
         <div class="footer-container">
-            <p>&copy; 2026. All rights reserved.</p>
-            <p>Powered by HTML & JSON API</p>
+            <p>&copy; 2026 Karim Hasen Pathan. All rights reserved.</p>
+            <p>Static Portfolio Version</p>
         </div>
     </footer>
 
-    <!-- Client Script -->
     <script src="js/script.js"></script>
-    <script>
-        document.addEventListener('profileLoaded', (e) => {
-            const data = e.detail;
-            const profile = data.profile;
-            document.title = `Resume | ${profile.full_name}`;
-            
-            const container = document.getElementById('resume-container');
-            const cvPath = profile.cv_file || '';
-            
-            if (cvPath) {
-                const fileExt = cvPath.split('.').pop().toLowerCase();
-                
-                let viewerHtml = '';
-                if (fileExt === 'pdf') {
-                    viewerHtml = `
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; flex-wrap: wrap; gap: 15px; text-align: left;">
-                            <div>
-                                <h2 style="font-family: var(--font-heading); font-size: 1.4rem;">${profile.full_name} - Curriculum Vitae</h2>
-                                <p style="color: var(--text-muted); font-size: 0.9rem;">File Type: PDF</p>
-                            </div>
-                        </div>
-                        <div class="cv-viewer-container" style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 10px; border: 1px solid var(--border-color);">
-                            <iframe src="${cvPath}" width="100%" height="850px" style="border: none; border-radius: 8px; background: #fff;"></iframe>
-                        </div>
-                    `;
-                } else {
-                    viewerHtml = `
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; flex-wrap: wrap; gap: 15px; text-align: left;">
-                            <div>
-                                <h2 style="font-family: var(--font-heading); font-size: 1.4rem;">${profile.full_name} - Curriculum Vitae</h2>
-                                <p style="color: var(--text-muted); font-size: 0.9rem;">File Type: ${fileExt.toUpperCase()}</p>
-                            </div>
-                        </div>
-                        <div class="cv-viewer-container" style="background: rgba(0,0,0,0.2); border-radius: 12px; padding: 10px; border: 1px solid var(--border-color);">
-                            <div style="padding: 60px 20px; text-align: center; color: var(--text-muted);">
-                                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" style="margin-bottom: 20px; color: var(--primary);">
-                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                    <polyline points="14 2 14 8 20 8"></polyline>
-                                </svg>
-                                <h3 style="font-family: var(--font-heading); margin-bottom: 10px; color: var(--text-main);">Browser Preview Not Supported</h3>
-                                <p style="margin-bottom: 15px; max-width: 480px; margin-left: auto; margin-right: auto;">
-                                    Your CV was uploaded as a <strong>.${fileExt}</strong> document.
-                                </p>
-                                <p style="color: var(--text-muted); font-size: 0.9rem; max-width: 480px; margin-left: auto; margin-right: auto;">
-                                    Please upload a <strong>PDF</strong> document in your admin panel to enable direct browser viewing.
-                                </p>
-                            </div>
-                        </div>
-                    `;
-                }
-                container.innerHTML = viewerHtml;
-            } else {
-                container.innerHTML = `
-                    <div style="padding: 80px 20px; text-align: center; color: var(--text-muted);">
-                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" style="margin-bottom: 20px; color: var(--primary);">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                            <circle cx="12" cy="13" r="4"></circle>
-                            <polyline points="14 2 14 8 20 8"></polyline>
-                        </svg>
-                        <h3 style="font-family: var(--font-heading); margin-bottom: 10px; color: var(--text-main);">No Resume Uploaded Yet</h3>
-                        <p style="margin-bottom: 25px; max-width: 480px; margin-left: auto; margin-right: auto;">
-                            The administrator has not uploaded a CV/Resume yet. Please check back soon or visit the administrative dashboard to upload.
-                        </p>
-                    </div>
-                `;
-            }
-        });
-    </script>
 </body>
 </html>
